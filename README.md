@@ -1,7 +1,7 @@
-# Automated Surveys powered by Twilio - Ruby on Rails
+# IVR Phone Tree: IVR for beginners. powered by Twilio - Ruby on Rails
 
-An example application implementing Automated Voice Surveys using Twilio.  For a
-step-by-step tutorial, [visit this link](https://twilio.com/docs/howto/surveys-walkthrough).
+An example application implementing an automated phone line using Twilio.  For a
+step-by-step tutorial, [visit this link](https://twilio.com/docs/howto/).
 
 Deploy this example app to Heroku now!
 
@@ -13,7 +13,7 @@ To run this locally on your machine:
 
 1) Grab latest source
 <pre>
-git clone git://github.com/TwilioDevEd/survey-rails.git 
+git clone git://github.com/TwilioDevEd/ivr-phone-tree-rails.git 
 </pre>
 
 2) Navigate to folder and run

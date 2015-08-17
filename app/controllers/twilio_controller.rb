@@ -3,8 +3,6 @@ require 'sanitize'
 
 
 class TwilioController < ApplicationController
-  before_action :set_caller_information, only: [:connect_ivr]
-  protect_from_forgery except: [:get_answer]
   
   def index
     render text: "Dial Me."
@@ -20,8 +18,8 @@ class TwilioController < ApplicationController
     render text: response.text
   end
 
-  # POST ivr/selection
-  def get_menu_selection
+  # GET ivr/selection
+  def menu_selection
     user_selection = params[:Digits]
 
     case user_selection
@@ -54,8 +52,8 @@ class TwilioController < ApplicationController
     render text: response.text
   end
 
-  # POST ivr/planets
-  def get_planet_selection
+  # POST/GET ivr/planets
+  def planet_selection
     user_selection = params[:Digits]
 
     case user_selection
@@ -104,10 +102,5 @@ class TwilioController < ApplicationController
     end
 
     render text: response.text
-  end
-
-  def set_caller_information
-    # Get phone_number from the incoming GET request from Twilio
-    @phone_number = Sanitize.clean(params[:From])
   end
 end
