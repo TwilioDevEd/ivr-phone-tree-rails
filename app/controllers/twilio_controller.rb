@@ -11,7 +11,7 @@ class TwilioController < ApplicationController
   # POST ivr/welcome
   def ivr_welcome
     response = Twilio::TwiML::Response.new do |r|
-      r.Gather numDigits: '1', action: '/ivr/selection' do |g|
+      r.Gather numDigits: '1', action: menu_path do |g|
         g.Play "http://howtodocs.s3.amazonaws.com/et-phone.mp3", loop: 3
       end
     end
@@ -80,9 +80,11 @@ class TwilioController < ApplicationController
     response = Twilio::TwiML::Response.new do |r|
       r.Say phrase, voice: 'alice', language: 'en-GB'
       if exit 
-        r.Hangup 
+        r.Say "Thank you for calling the ET Phone Home Service - the
+        adventurous alien's first choice in intergalactic travel."
+        r.Hangup
       else
-        r.Redirect "/ivr/welcome"
+        r.Redirect welcome_path
       end
     end
 
@@ -90,14 +92,14 @@ class TwilioController < ApplicationController
   end
 
   def twiml_play(audio_url, exit = false)
-    # Respond with some TwiML and say something.
-    # Should we hangup or go back to the main menu?
     response = Twilio::TwiML::Response.new do |r|
       r.Play audio_url, loop:2
       if exit 
-        r.Hangup 
+        r.Say "Thank you for calling the ET Phone Home Service - the
+        adventurous alien's first choice in intergalactic travel.", voice: 'alice', language: 'en-GB'
+        r.Hangup
       else
-        r.Redirect "/ivr/welcome"
+        r.Redirect welcome_path
       end
     end
 
