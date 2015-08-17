@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Root of the app
   root 'twilio#index'
 
-  # webhook for Twilio survey number
+  # webhook for your Twilio number
   match 'ivr/welcome' => 'twilio#ivr_welcome', via: [:get, :post]
 
   # callback for user entry
