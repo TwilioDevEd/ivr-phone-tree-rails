@@ -5,7 +5,7 @@ step-by-step tutorial, [visit this link](https://twilio.com/docs/howto/).
 
 Deploy this example app to Heroku now!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/survey-rails)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/ivr-phone-tree-rails)
 
 ## Installation
 
