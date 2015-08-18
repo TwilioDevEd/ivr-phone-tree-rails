@@ -92,7 +92,7 @@
         parameters](https://www.twilio.com/docs/api/twiml/twilio_request
         #synchronous-request-parameters)
 
-  .step(data-file='app/controllers/twilio_controller.rb', data-highlight='21-38, 76-88')
+  .step(data-file='app/controllers/twilio_controller.rb', data-highlight='21-38, 73-88')
     :markdown
       ## The Main Menu: Process the caller's selection
 
@@ -115,6 +115,14 @@
       * [Ruby Switch statment](https://www.codecademy.com/glossary/ruby/switch-statement)
       * [The TwiMl Hangup verb](https://www.twilio.com/docs/api/twiml/hangup)
       * [TwiMl Say: Language Options](https://www.twilio.com/docs/api/twiml/say#attributes-alice)
+
+  .step(data-file='app/controllers/twilio_controller.rb', data-highlight='40-69')
+    :markdown
+      ## The Planet Directory: Collect more input from the user
+
+      If at the main menu our caller chooses to call her home planet we will give her the planet directory. This is akin to the typical "company directory" feature of most call centers. 
+
+      Once again we give our `Gather` verb an `action` where we will switch our response based on what the caller chooses. In most instances we are going [`Dial`](https://www.twilio.com/docs/api/twiml/dial) the appropriate number to connect our caller to her home planet.
 
   .step
     :markdown
