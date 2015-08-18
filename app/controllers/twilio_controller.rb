@@ -35,12 +35,11 @@ class TwilioController < ApplicationController
       @output = "Returning to the main menu."
       twiml_say(@output)
     end
-
   end
 
   def list_planets
-    message = "To call the planet Broh doe As O G, press 2. To call the planet
-    DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To
+    message = "To call the planet Brodo Asogi, press 2. To call the planet
+    Dugobah, press 3. To call an Uber asteroid to your location, press 4. To
     go back to the main menu, press the star key."
 
     response = Twilio::TwiML::Response.new do |r|
