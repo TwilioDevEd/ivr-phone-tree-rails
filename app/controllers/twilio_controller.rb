@@ -26,7 +26,7 @@ class TwilioController < ApplicationController
     when "1"
       @output = "To get to your extraction point, get on your bike and go down
         the street. Then Left down an alley. Avoid the police cars. Turn left
-        into an unfinished housing developement. Fly over the roadblock. Go
+        into an unfinished housing development. Fly over the roadblock. Go
         passed the moon. Soon after you will see your mother ship."
       twiml_say(@output, true)
     when "2"
@@ -58,14 +58,11 @@ class TwilioController < ApplicationController
 
     case user_selection
     when "2"
-      @output = "http://howtodocs.s3.amazonaws.com/brodo-selection.mp3"
-      twiml_play(@output, true)
+      twiml_dial(ENV['PLANET1_NUMBER'])
     when "3"
-      @output = "http://howtodocs.s3.amazonaws.com/dugobah-selection.mp3"
-      twiml_play(@output, true)
+      twiml_dial(ENV['PLANET2_NUMBER'])
     when "4"
-      @output = "http://howtodocs.s3.amazonaws.com/uber-selection.mp3"
-      twiml_play(@output, true)
+      twiml_dial(ENV['PLANET3_NUMBER'])
     else
       @output = "Returning to the main menu."
       twiml_say(@output)
@@ -91,16 +88,9 @@ class TwilioController < ApplicationController
     render text: response.text
   end
 
-  def twiml_play(audio_url, exit = false)
+  def twiml_dial(phone_number)
     response = Twilio::TwiML::Response.new do |r|
-      r.Play audio_url, loop:2
-      if exit 
-        r.Say "Thank you for calling the ET Phone Home Service - the
-        adventurous alien's first choice in intergalactic travel.", voice: 'alice', language: 'en-GB'
-        r.Hangup
-      else
-        r.Redirect welcome_path
-      end
+      r.Dial phone_number
     end
 
     render text: response.text
