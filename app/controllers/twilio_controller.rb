@@ -58,11 +58,11 @@ class TwilioController < ApplicationController
 
     case user_selection
     when "2"
-      twiml_dial(ENV['PLANET1_NUMBER'])
+      twiml_dial("+12024173378")
     when "3"
-      twiml_dial(ENV['PLANET2_NUMBER'])
+      twiml_dial("+12027336386")
     when "4"
-      twiml_dial(ENV['PLANET3_NUMBER'])
+      twiml_dial("+12027336637")
     else
       @output = "Returning to the main menu."
       twiml_say(@output)
