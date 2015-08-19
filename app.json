@@ -16,6 +16,20 @@
     "Automated Support",
     "Demo"
   ],
+  "env": {
+    "PLANET1_NUMBER": {
+      "description": "Any phone number you would like to connect callers to for Planet 1",
+      "required": false
+    },
+    "PLANET2_NUMBER": {
+      "description": "Any phone number you would like to connect callers to for Planet 2",
+      "required": false
+    },
+    "PLANET3_NUMBER": {
+      "description": "Any phone number you would like to connect callers to for Planet 3",
+      "required": false
+    }
+  },
   "website": "https://twilio.com/docs/howto/ivr-phone-tree/ruby/rails",
   "repository": "https://github.com/TwilioDevEd/ivr-phone-tree-rails",
   "logo": "https://s3-us-west-2.amazonaws.com/deved/twilio-logo.png",
