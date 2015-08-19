@@ -31,7 +31,7 @@
     }
   },
   "website": "https://twilio.com/docs/howto/ivr-phone-tree/ruby/rails",
-  "repository": "https://github.com/TwilioDevEd/ivr-phone-tree-rails#appjson-envvars",
+  "repository": "https://github.com/TwilioDevEd/ivr-phone-tree-rails",
   "logo": "https://s3-us-west-2.amazonaws.com/deved/twilio-logo.png",
   "success_url": "/landing.html"
 }
