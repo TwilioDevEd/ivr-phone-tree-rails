@@ -21,26 +21,12 @@ git clone git://github.com/TwilioDevEd/ivr-phone-tree-rails.git
 bundle install
 </pre>
 
-3) Make sure postgres is installed locally
-<pre>
-gem install pg 
-</pre>
-* or for peeps using homebrew
-<pre>
-gem install pg -- --with-pg-config=/usr/local/bin/pg_config
-</pre>
-
-4) Create the Database and run migrations
-<pre>
-rake db:create db:migrate
-</pre>
-
-5) Make sure the tests succeed
+3) Make sure the tests succeed
 <pre>
 rake test
 </pre>
 
-6) Run the server
+4) Run the server
 <pre>
 rails server
 </pre>
