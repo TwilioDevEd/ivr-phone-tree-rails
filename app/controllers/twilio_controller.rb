@@ -44,7 +44,7 @@ class TwilioController < ApplicationController
     go back to the main menu, press the star key."
 
     response = Twilio::TwiML::Response.new do |r|
-      r.Gather numDigits: '1', action: '/ivr/planets' do |g|
+      r.Gather numDigits: '1', action: planets_path do |g|
         g.Say message, voice: 'alice', language: 'en-GB', loop:3
       end
     end
