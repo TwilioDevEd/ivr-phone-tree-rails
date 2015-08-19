@@ -38,7 +38,7 @@
       get an incoming call.
 
       [Click on one of your numbers](/user/account/phone-numbers/incoming) and
-      configure the Voice URL to point to our server. In our code the route
+      configure the Voice URL to point to our app. In our code the route
       will be `/ivr/welcome`.
 
       ![Configuring a Twilio Number](//s3.amazonaws.com/howtodocs/number-
@@ -49,10 +49,11 @@
       **See Also:**
       * [Configuring Twilio Numbers for Voice](/help/faq/voice/how-do-i-assign-my-twilio-number-to-my-voice-application)
       * [Rails Routing guide](http://guides.rubyonrails.org/routing.html)
+      * [Using ngrok to test your Twilio webhooks locally](https://www.twilio.com/blog/2013/10/test-your-webhooks-locally-with-ngrok.html)
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='11-19')
     :markdown
-      ## Respond to the Twilio request with TwiMl
+      ## Respond to the Twilio request with TwiML
 
       Our Twilio number is now configured to [send HTTP
       requests](https://www.twilio.com/docs/api/twiml/twilio_request) to this
@@ -75,15 +76,17 @@
     :markdown
       ## Where to send the caller's input
 
-      The *gather's* `action` attribute takes an absolute or relative URL as a
-      value. When the caller has finished entering digits Twilio will make a
-      GET or POST request to this URL including the
+      The *gather's* `action` parameter takes an absolute or relative URL as a
+      value - in our case, the `menu` route.
+
+      When the caller has finished entering digits Twilio will make a
+      GET or POST request to this URL including a
       [`Digits`](https://www.twilio.com/docs/api/twiml/gather#attributes-
-      action-parameters) parameter.
+      action-parameters) parameter with the number our caller chose.
 
       After making this request, Twilio will continue the current call using
-      the TwiML received in your response. Any TwiML verbs occuring after a
-      <Gather> are unreachable, unless the caller enters no digits.
+      the TwiML received in your response. Any TwiML verbs occuring after a <Gather>
+      are unreachable, unless the caller enters no digits.
 
       ---
 
@@ -96,16 +99,18 @@
     :markdown
       ## The Main Menu: Process the caller's selection
 
-      Our action route will handle processing the caller's input. In this
-      case, if our caller chooses '1' for directions, we respond with TwiMl
-      that will [`Say`](https://www.twilio.com/docs/api/twiml/say) the
-      directions.
+      This route handles processing the caller's input.
+
+      If our caller chooses '1' for directions, we use a helper method defined
+      below, `twiml_say`, to respond with TwiML that will
+      [`Say`](https://www.twilio.com/docs/api/twiml/say) directions to our
+      caller's extraction point.
 
       If the caller chooses '2' to call her home planet, then we need to
-      gather some more input from her. In this case we have written another
-      method that we'll cover in the next step.
+      gather more input from her. We wrote another method to handle this,
+      `list_planets`, which we'll cover in the next step.
 
-      If the caller enters anything else we will respond with a TwiMl
+      If the caller enters anything else we respond with a TwiML
       [`Redirect`](https://www.twilio.com/docs/api/twiml/redirect) to the main
       menu.
 
@@ -113,24 +118,35 @@
 
       **See Also:**
       * [Ruby Switch statment](https://www.codecademy.com/glossary/ruby/switch-statement)
-      * [The TwiMl Hangup verb](https://www.twilio.com/docs/api/twiml/hangup)
+      * [The TwiML Hangup verb](https://www.twilio.com/docs/api/twiml/hangup)
       * [TwiMl Say: Language Options](https://www.twilio.com/docs/api/twiml/say#attributes-alice)
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='40-69, 90-96')
     :markdown
       ## The Planet Directory: Collect more input from the user
 
-      If at the main menu our caller chooses to call her home planet we will give her the planet directory. This is akin to the typical "company directory" feature of most call centers. 
+      If our caller chooses to call her home planet we will tell her the planet
+      directory. This is akin to a typical "company directory" feature of
+      most IVRs.
 
-      Once again we give our `Gather` verb an `action` where we will switch our response based on what the caller chooses. In most instances we are going to [`Dial`](https://www.twilio.com/docs/api/twiml/dial) the appropriate number to connect our caller to her home planet.
+      In our TwiML response we again use a `Gather` verb to receive our caller's
+      input. The `action` verb points this time to the `planets` route, which
+      will switch our response based on what the caller chooses.
+
+      The TwiML response we return for that route just uses a
+      [`Dial`](https://www.twilio.com/docs/api/twiml/dial) verb with the
+      appropriate phone number to connect our caller to her home planet. We set those
+      numbers using environment variables.
 
   .step
     :markdown
       ## Where to next?
 
       That's it! We've just implemented an IVR phone tree that will delight
-      and serve your customers. If you're a Ruby developer working with
-      Twilio, you might want to check out these other tutorials.
+      and serve your customers.
+
+      If you're a Ruby developer working with Twilio, you might enjoy these
+      other tutorials:
 
       [**Automated Survey**](//www.twilio.com/docs/howto/walkthrough
       /automated-survey/ruby/rails)

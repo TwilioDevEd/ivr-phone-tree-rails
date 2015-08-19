@@ -46,7 +46,7 @@ config.png" alt="Configuring a Twilio Number"></p>
 <li><a href="/help/faq/voice/how-do-i-assign-my-twilio-number-to-my-voice-application">Configuring Twilio Numbers for Voice</a></li>
 <li><a href="http://guides.rubyonrails.org/routing.html">Rails Routing guide</a></li>
 </ul>
-</div><div data-file="app/controllers/twilio_controller.rb" data-highlight="11-19" class="step"><h2 id="respond-to-the-twilio-request-with-twiml">Respond to the Twilio request with TwiMl</h2>
+</div><div data-file="app/controllers/twilio_controller.rb" data-highlight="11-19" class="step"><h2 id="respond-to-the-twilio-request-with-twiml">Respond to the Twilio request with TwiML</h2>
 <p>Our Twilio number is now configured to <a href="https://www.twilio.com/docs/api/twiml/twilio_request">send HTTP
 requests</a> to this
 controller method on any incoming voice calls. Our app responds with
@@ -63,14 +63,15 @@ welcome message.</p>
 <li><a href="https://www.twilio.com/docs/api/twiml/play#attributes-loop">Play &#39;loop&#39; attribute</a></li>
 </ul>
 </div><div data-file="app/controllers/twilio_controller.rb" data-highlight="14" class="step"><h2 id="where-to-send-the-caller-s-input">Where to send the caller&#39;s input</h2>
-<p>The <em>gather&#39;s</em> <code>action</code> attribute takes an absolute or relative URL as a
-value. When the caller has finished entering digits Twilio will make a
-GET or POST request to this URL including the
+<p>The <em>gather&#39;s</em> <code>action</code> parameter takes an absolute or relative URL as a
+value - in our case, the <code>menu</code> route.</p>
+<p>When the caller has finished entering digits Twilio will make a
+GET or POST request to this URL including a
 <a href="https://www.twilio.com/docs/api/twiml/gather#attributes-
-action-parameters"><code>Digits</code></a> parameter.</p>
+action-parameters"><code>Digits</code></a> parameter with the number our caller chose.</p>
 <p>After making this request, Twilio will continue the current call using
-the TwiML received in your response. Any TwiML verbs occuring after a</p>
-<p>&lt;Gather&gt; are unreachable, unless the caller enters no digits.</p>
+the TwiML received in your response. Any TwiML verbs occuring after a &lt;Gather&gt;
+are unreachable, unless the caller enters no digits.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
@@ -79,30 +80,40 @@ the TwiML received in your response. Any TwiML verbs occuring after a</p>
 parameters</a></li>
 </ul>
 </div><div data-file="app/controllers/twilio_controller.rb" data-highlight="21-38, 73-88" class="step"><h2 id="the-main-menu-process-the-caller-s-selection">The Main Menu: Process the caller&#39;s selection</h2>
-<p>Our action route will handle processing the caller&#39;s input. In this
-case, if our caller chooses &#39;1&#39; for directions, we respond with TwiMl
-that will <a href="https://www.twilio.com/docs/api/twiml/say"><code>Say</code></a> the
-directions.</p>
+<p>This route handles processing the caller&#39;s input.</p>
+<p>If our caller chooses &#39;1&#39; for directions, we use a helper method defined
+below, <code>twiml_say</code>, to respond with TwiML that will
+<a href="https://www.twilio.com/docs/api/twiml/say"><code>Say</code></a> directions to our
+caller&#39;s extraction point.</p>
 <p>If the caller chooses &#39;2&#39; to call her home planet, then we need to
-gather some more input from her. In this case we have written another
-method that we&#39;ll cover in the next step.</p>
-<p>If the caller enters anything else we will respond with a TwiMl
+gather more input from her. We wrote another method to handle this,
+<code>list_planets</code>, which we&#39;ll cover in the next step.</p>
+<p>If the caller enters anything else we respond with a TwiML
 <a href="https://www.twilio.com/docs/api/twiml/redirect"><code>Redirect</code></a> to the main
 menu.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
 <li><a href="https://www.codecademy.com/glossary/ruby/switch-statement">Ruby Switch statment</a></li>
-<li><a href="https://www.twilio.com/docs/api/twiml/hangup">The TwiMl Hangup verb</a></li>
+<li><a href="https://www.twilio.com/docs/api/twiml/hangup">The TwiML Hangup verb</a></li>
 <li><a href="https://www.twilio.com/docs/api/twiml/say#attributes-alice">TwiMl Say: Language Options</a></li>
 </ul>
 </div><div data-file="app/controllers/twilio_controller.rb" data-highlight="40-69, 90-96" class="step"><h2 id="the-planet-directory-collect-more-input-from-the-user">The Planet Directory: Collect more input from the user</h2>
-<p>If at the main menu our caller chooses to call her home planet we will give her the planet directory. This is akin to the typical &quot;company directory&quot; feature of most call centers. </p>
-<p>Once again we give our <code>Gather</code> verb an <code>action</code> where we will switch our response based on what the caller chooses. In most instances we are going to <a href="https://www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> the appropriate number to connect our caller to her home planet.</p>
+<p>If our caller chooses to call her home planet we will tell her the planet
+directory. This is akin to a typical &quot;company directory&quot; feature of
+most IVRs. </p>
+<p>In our TwiML response we again use a <code>Gather</code> verb to receive our caller&#39;s
+input. The <code>action</code> verb points this time to the <code>planets</code> route, which
+will switch our response based on what the caller chooses.</p>
+<p>The TwiML response we return for that route just uses a
+<a href="https://www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> verb with the
+appropriate phone number to connect our caller to her home planet. We set those
+numbers using environment variables.</p>
 </div><div class="step"><h2 id="where-to-next-">Where to next?</h2>
 <p>That&#39;s it! We&#39;ve just implemented an IVR phone tree that will delight
-and serve your customers. If you&#39;re a Ruby developer working with
-Twilio, you might want to check out these other tutorials.</p>
+and serve your customers.</p>
+<p>If you&#39;re a Ruby developer working with Twilio, you might enjoy these
+other tutorials:</p>
 <p><a href="//www.twilio.com/docs/howto/walkthrough
 /automated-survey/ruby/rails"><strong>Automated Survey</strong></a></p>
 <p>Instantly collect structured data from your users with a survey
