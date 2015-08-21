@@ -1,7 +1,7 @@
 # IVR Phone Tree: IVR for beginners. powered by Twilio - Ruby on Rails
 
 An example application implementing an automated phone line using Twilio.  For a
-step-by-step tutorial, [visit this link](https://twilio.com/docs/howto/).
+step-by-step tutorial, [visit this link](https://www.twilio.com/docs/howto/walkthrough/ivr-phone-tree/ruby/rails).
 
 Deploy this example app to Heroku now!
 
