@@ -34,10 +34,9 @@ class TwilioControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "/planets should Play something then Hangup when 2 is chosen" do
+  test "/planets should Dial an extension when 2 is chosen" do
     get :planet_selection, From: "15556505813", Digits: '2'
-    assert response.body.include? "Play"
-    assert response.body.include? "Hangup"
+    assert response.body.include? "Dial"
     assert_response :success
   end
 
