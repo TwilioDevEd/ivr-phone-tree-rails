@@ -31,12 +31,6 @@ To run this locally on your machine.
    $ bundle install
    ```
 
-1. Create the database.
-
-   ```bash
-   $ rake db:create db:migrate
-   ```
-
 1. Make sure the tests succeed.
 
    ```bash
@@ -64,7 +58,7 @@ To run this locally on your machine.
    on your account. Set the voice URL for the number to
    `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
 
-1. Grab your phone and call your newly-provisioned number.
+1. Grab your phone and call your newly-provisioned number!
 
 ## Meta
 
