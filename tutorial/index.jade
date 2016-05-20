@@ -1,7 +1,7 @@
 .chapter(data-title='IVR Phone Tree')
   .step(data-file='config/routes.rb')
     :markdown
-      ## About this application
+      ## About This Application
 
       ![Extra Terrestrial Phone Home
       Service](//howtodocs.s3.amazonaws.com/logo-et-phone2.png)
@@ -27,7 +27,7 @@
 
       **See Also:**
       * [Getting Started with Ruby on Rails](//guides.rubyonrails.org/getting_started.html)
-      * [Getting started with the Twilio Ruby gem](//twilio-ruby.readthedocs.org/en/latest/index.html#getting-started)
+      * [Getting Started with the Twilio Ruby Gem](//twilio-ruby.readthedocs.org/en/latest/index.html#getting-started)
 
   .step(data-file='config/routes.rb')
     :markdown
@@ -48,12 +48,12 @@
 
       **See Also:**
       * [Configuring Twilio Numbers for Voice](//www.twilio.com/help/faq/voice/how-do-i-assign-my-twilio-number-to-my-voice-application)
-      * [Rails Routing guide](//guides.rubyonrails.org/routing.html)
-      * [Using ngrok to test your Twilio webhooks locally](//www.twilio.com/blog/2013/10/test-your-webhooks-locally-with-ngrok.html)
+      * [Rails Routing Guide](//guides.rubyonrails.org/routing.html)
+      * [Using Ngrok to Test Your Twilio Webhooks Locally](//www.twilio.com/blog/2013/10/test-your-webhooks-locally-with-ngrok.html)
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='11-19')
     :markdown
-      ## Respond to the Twilio request with TwiML
+      ## Respond to the Twilio Request with TwiML
 
       Our Twilio number is now configured to [send HTTP
       requests](//www.twilio.com/docs/api/twiml/twilio_request) to this
@@ -69,12 +69,12 @@
       ---
 
       **See Also:**
-      * [Gather attributes](//www.twilio.com/docs/api/twiml/gather#attributes)
-      * [Play 'loop' attribute](//www.twilio.com/docs/api/twiml/play#attributes-loop)
+      * [Gather Attributes](//www.twilio.com/docs/api/twiml/gather#attributes)
+      * [Play 'loop' Attribute](//www.twilio.com/docs/api/twiml/play#attributes-loop)
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='14')
     :markdown
-      ## Where to send the caller's input
+      ## Where to Send the Caller's Input
 
       The *gather's* `action` parameter takes an absolute or relative URL as a
       value - in our case, the `menu` route.
@@ -95,7 +95,7 @@
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='21-38, 73-88')
     :markdown
-      ## The Main Menu: Process the caller's selection
+      ## The Main Menu: Process the Caller's Selection
 
       This route handles processing the caller's input.
 
@@ -114,13 +114,13 @@
       ---
 
       **See Also:**
-      * [Ruby Switch statment](//www.codecademy.com/glossary/ruby/switch-statement)
-      * [The TwiML Hangup verb](//www.twilio.com/docs/api/twiml/hangup)
+      * [Ruby Switch Statment](//www.codecademy.com/glossary/ruby/switch-statement)
+      * [The TwiML Hangup Verb](//www.twilio.com/docs/api/twiml/hangup)
       * [TwiMl Say: Language Options](//www.twilio.com/docs/api/twiml/say#attributes-alice)
 
   .step(data-file='app/controllers/twilio_controller.rb', data-highlight='40-69, 90-96')
     :markdown
-      ## The Planet Directory: Collect more input from the caller
+      ## The Planet Directory: Collect More Input from the Caller
 
       If our caller chooses to call her home planet we will tell her the planet
       directory. This is akin to a typical "company directory" feature of
@@ -137,7 +137,7 @@
 
   .step
     :markdown
-      ## Where to next?
+      ## Where to Next?
 
       That's it! We've just implemented an IVR phone tree that will delight
       and serve your customers.
