@@ -2,7 +2,7 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-# IVR Phone Tree: IVR for beginners. powered by Twilio - Ruby on Rails
+# IVR Phone Tree
 
 IVRs (interactive voice response) are automated phone systems that can facilitate communication between callers and businesses. If you've ever dialed your credit card company to check on a balance after responding to a series of automated prompts, you've used an IVR. Learn how to build an IVR in minutes using Twilio's powerful TwiML API.
 
@@ -10,7 +10,7 @@ IVRs (interactive voice response) are automated phone systems that can facilitat
 
 ## Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/ivr-phone-tree-rails)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/ivr-phone-tree-rails)
 
 ## Local Development
 
