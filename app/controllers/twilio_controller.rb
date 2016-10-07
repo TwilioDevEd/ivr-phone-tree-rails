@@ -1,20 +1,16 @@
-require 'twilio-ruby'
-require 'sanitize'
-
-
 class TwilioController < ApplicationController
-  
   def index
-    render text: "Dial Me."
+    render text: 'Dial Me.'
   end
 
   # POST ivr/welcome
   def ivr_welcome
     response = Twilio::TwiML::Response.new do |r|
       r.Gather numDigits: '1', action: menu_path do |g|
-        g.Play "http://howtodocs.s3.amazonaws.com/et-phone.mp3", loop: 3
+        g.Play 'http://howtodocs.s3.amazonaws.com/et-phone.mp3', loop: 3
       end
     end
+
     render text: response.text
   end
 
@@ -23,49 +19,46 @@ class TwilioController < ApplicationController
     user_selection = params[:Digits]
 
     case user_selection
-    when "1"
-      @output = "To get to your extraction point, get on your bike and go down
+    when '1'
+      output = 'To get to your extraction point, get on your bike and go down
         the street. Then Left down an alley. Avoid the police cars. Turn left
         into an unfinished housing development. Fly over the roadblock. Go
-        passed the moon. Soon after you will see your mother ship."
-      twiml_say(@output, true)
-    when "2"
+        passed the moon. Soon after you will see your mother ship.'
+      twiml_say(output, true)
+    when '2'
       list_planets
     else
-      @output = "Returning to the main menu."
-      twiml_say(@output)
+      twiml_say('Returning to the main men.')
     end
-
   end
 
-  # POST/GET ivr/planets 
+  # POST/GET ivr/planets
   # planets_path
   def planet_selection
     user_selection = params[:Digits]
 
     case user_selection
-    when "2"
-      twiml_dial("+12024173378")
-    when "3"
-      twiml_dial("+12027336386")
-    when "4"
-      twiml_dial("+12027336637")
+    when '2'
+      twiml_dial('+12024173378')
+    when '3'
+      twiml_dial('+12027336386')
+    when '4'
+      twiml_dial('+12027336637')
     else
-      @output = "Returning to the main menu."
-      twiml_say(@output)
+      twiml_say('Returning to the main menu')
     end
   end
 
   private
 
   def list_planets
-    message = "To call the planet Broh doe As O G, press 2. To call the planet
+    message = 'To call the planet Broh doe As O G, press 2. To call the planet
     DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To
-    go back to the main menu, press the star key."
+    go back to the main menu, press the star key.'
 
     response = Twilio::TwiML::Response.new do |r|
       r.Gather numDigits: '1', action: planets_path do |g|
-        g.Say message, voice: 'alice', language: 'en-GB', loop:3
+        g.Say message, voice: 'alice', language: 'en-GB', loop: 3
       end
     end
 
@@ -77,7 +70,7 @@ class TwilioController < ApplicationController
     # Should we hangup or go back to the main menu?
     response = Twilio::TwiML::Response.new do |r|
       r.Say phrase, voice: 'alice', language: 'en-GB'
-      if exit 
+      if exit
         r.Say "Thank you for calling the ET Phone Home Service - the
         adventurous alien's first choice in intergalactic travel."
         r.Hangup
