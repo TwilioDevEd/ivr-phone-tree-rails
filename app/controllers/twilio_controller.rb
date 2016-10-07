@@ -35,23 +35,11 @@ class TwilioController < ApplicationController
       @output = "Returning to the main menu."
       twiml_say(@output)
     end
+
   end
 
-  def list_planets
-    message = "To call the planet Brodo Asogi, press 2. To call the planet
-    Dugobah, press 3. To call an Uber asteroid to your location, press 4. To
-    go back to the main menu, press the star key."
-
-    response = Twilio::TwiML::Response.new do |r|
-      r.Gather numDigits: '1', action: planets_path do |g|
-        g.Say message, voice: 'alice', language: 'en-GB', loop:3
-      end
-    end
-
-    render text: response.text
-  end
-
-  # POST/GET ivr/planets
+  # POST/GET ivr/planets 
+  # planets_path
   def planet_selection
     user_selection = params[:Digits]
 
@@ -69,6 +57,20 @@ class TwilioController < ApplicationController
   end
 
   private
+
+  def list_planets
+    message = "To call the planet Broh doe As O G, press 2. To call the planet
+    DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To
+    go back to the main menu, press the star key."
+
+    response = Twilio::TwiML::Response.new do |r|
+      r.Gather numDigits: '1', action: planets_path do |g|
+        g.Say message, voice: 'alice', language: 'en-GB', loop:3
+      end
+    end
+
+    render text: response.text
+  end
 
   def twiml_say(phrase, exit = false)
     # Respond with some TwiML and say something.
