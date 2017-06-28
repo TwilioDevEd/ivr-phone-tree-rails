@@ -8,8 +8,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-# Twilio REST API. 
-gem 'twilio-ruby', '~> 5.0.0.rc17'
+# Twilio REST API.
+gem 'twilio-ruby', '~> 5.0.0.rc24'
 # Use sanitize
 gem 'sanitize'
 # Use jquery as the JavaScript library
