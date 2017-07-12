@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # Twilio REST API.
-gem 'twilio-ruby', '~> 5.0.0.rc24'
+gem 'twilio-ruby', '~> 5.0.0.rc26'
 # Use sanitize
 gem 'sanitize'
 # Use jquery as the JavaScript library
