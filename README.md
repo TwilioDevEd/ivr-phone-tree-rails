@@ -2,9 +2,16 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-# IVR Phone Tree
+# IVR Phone Tree with Ruby on Rails and Twilio
 
-IVRs (interactive voice response) are automated phone systems that can facilitate communication between callers and businesses. If you've ever dialed your credit card company to check on a balance after responding to a series of automated prompts, you've used an IVR. Learn how to build an IVR in minutes using Twilio's powerful TwiML API.
+[![Build Status](https://travis-ci.org/TwilioDevEd/ivr-phone-tree-rails.svg?branch=master)](https://travis-ci.org/TwilioDevEd/ivr-phone-tree-rails)
+
+IVRs (interactive voice response) are automated phone systems that can
+facilitate communication between callers and businesses. If you've ever dialed
+your credit card company to check on a balance after responding to a series of
+automated prompts, you've used an IVR. Learn how to build an IVR in minutes
+using Twilio's powerful TwiML API.
+
 
 [Read the full tutorial here!](https://www.twilio.com/docs/howto/walkthrough/ivr-phone-tree/ruby/rails)
 
