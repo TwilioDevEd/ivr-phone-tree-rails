@@ -15,10 +15,6 @@ using Twilio's powerful TwiML API.
 
 [Read the full tutorial here!](https://www.twilio.com/docs/howto/walkthrough/ivr-phone-tree/ruby/rails)
 
-## Deploy to Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/ivr-phone-tree-rails)
-
 ## Local Development
 
 This project is built using [Ruby on Rails](http://rubyonrails.org/) Framework.
