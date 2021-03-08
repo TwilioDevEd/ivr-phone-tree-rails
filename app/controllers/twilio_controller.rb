@@ -5,7 +5,7 @@ require 'sanitize'
 class TwilioController < ApplicationController
 
   def index
-    render text: "Dial Me."
+    render plain: "Dial Me."
   end
 
   # POST ivr/welcome
