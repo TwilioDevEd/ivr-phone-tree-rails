@@ -4,7 +4,7 @@
 
 # IVR Phone Tree with Ruby on Rails and Twilio
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/ivr-phone-tree-rails.svg?branch=master)](https://travis-ci.org/TwilioDevEd/ivr-phone-tree-rails)
+![](https://github.com/TwilioDevEd/ivr-phone-tree-rails/actions/workflows/build.yml/badge.svg)
 
 IVRs (interactive voice response) are automated phone systems that can
 facilitate communication between callers and businesses. If you've ever dialed
@@ -37,7 +37,7 @@ To run this locally on your machine.
 1. Make sure the tests succeed.
 
    ```bash
-   $ rake test
+   $ bundle exec rails test
    ```
 
 1. Start the server.
@@ -57,7 +57,7 @@ To run this locally on your machine.
    ```
    
 1. Provision a number under the
-   [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming)
+   [Manage Numbers page](https://www.twilio.com/console/phone-numbers/incoming)
    on your account. Set the voice URL for the number to
    `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
 
@@ -66,5 +66,5 @@ To run this locally on your machine.
 ## Meta
 
 * No warranty expressed or implied. Software is as is. Diggity.
-* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* [MIT License](LICENSE)
 * Lovingly crafted by Twilio Developer Education.

@@ -1,21 +1,19 @@
 require 'twilio-ruby'
-require 'sanitize'
 
 
 class TwilioController < ApplicationController
 
   def index
-    render text: "Dial Me."
+    render plain: "Dial Me."
   end
 
   # POST ivr/welcome
   def ivr_welcome
     response = Twilio::TwiML::VoiceResponse.new
-    gather = Twilio::TwiML::Gather.new(num_digits: '1', action: menu_path)
-    gather.say("Thanks for calling the E T Phone Home Service. Please press 1 for
-    directions. Press 2 for a list of planets to call.", loop: 3)
-    response.append(gather)
-
+    response.gather(num_digits: '1', action: menu_path) do |gather|
+      gather.say(message: "Thanks for calling the E T Phone Home Service. Please press 1 for
+      directions. Press 2 for a list of planets to call.", loop: 3)
+    end
     render xml: response.to_s
   end
 
@@ -64,10 +62,9 @@ class TwilioController < ApplicationController
     DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To
     go back to the main menu, press the star key."
 
-    response = Twilio::TwiML::VoiceResponse.new do |r|
-      gather = Twilio::TwiML::Gather.new(num_digits: '1', action: planets_path)
-      gather.say(message, voice: 'alice', language: 'en-GB', loop: 3)
-      r.append(gather)
+    response = Twilio::TwiML::VoiceResponse.new
+    response.gather(num_digits: '1', action: planets_path) do |gather|
+      gather.say(message: message, voice: 'alice', language: 'en-GB', loop: 3)
     end
 
     render xml: response.to_s
@@ -76,15 +73,14 @@ class TwilioController < ApplicationController
   def twiml_say(phrase, exit = false)
     # Respond with some TwiML and say something.
     # Should we hangup or go back to the main menu?
-    response = Twilio::TwiML::VoiceResponse.new do |r|
-      r.say(phrase, voice: 'alice', language: 'en-GB')
-      if exit
-        r.say("Thank you for calling the ET Phone Home Service - the
-        adventurous alien's first choice in intergalactic travel.")
-        r.hangup
-      else
-        r.redirect(welcome_path)
-      end
+    response = Twilio::TwiML::VoiceResponse.new
+    response.say(message: phrase, voice: 'alice', language: 'en-GB')
+    if exit
+      response.say(message: "Thank you for calling the ET Phone Home Service - the
+      adventurous alien's first choice in intergalactic travel.")
+      response.hangup
+    else
+      response.redirect(welcome_path)
     end
 
     render xml: response.to_s
