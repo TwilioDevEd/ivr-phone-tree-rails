@@ -64,7 +64,7 @@ class TwilioController < ApplicationController
 
     response = Twilio::TwiML::VoiceResponse.new
     response.gather(num_digits: '1', action: planets_path) do |gather|
-      gather.say(message: message, voice: 'alice', language: 'en-GB', loop: 3)
+      gather.say(message: message, voice: 'Polly.Amy', language: 'en-GB', loop: 3)
     end
 
     render xml: response.to_s
@@ -74,7 +74,7 @@ class TwilioController < ApplicationController
     # Respond with some TwiML and say something.
     # Should we hangup or go back to the main menu?
     response = Twilio::TwiML::VoiceResponse.new
-    response.say(message: phrase, voice: 'alice', language: 'en-GB')
+    response.say(message: phrase, voice: 'Polly.Amy', language: 'en-GB')
     if exit
       response.say(message: "Thank you for calling the ET Phone Home Service - the
       adventurous alien's first choice in intergalactic travel.")
